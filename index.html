@@ -355,52 +355,49 @@ body::before{
 
 .checklist{display:flex;flex-direction:column;gap:8px;}
 
-.check-item{
-  display:flex;
-  align-items:center;
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:12px;
-  padding:10px 14px;
+}
+
+@media(max-width:600px){
+  .steps-grid{grid-template-columns:1fr;}
+}
+
+.step-item{
+  background:var(--bg3);
+  border:1px solid var(--border);
   border-radius:var(--radius-sm);
-  cursor:pointer;
-  transition:background 0.15s;
-  user-select:none;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
-.check-item:hover{background:var(--bg3);}
-
-.check-box{
-  width:20px;height:20px;
-  border:1.5px solid var(--border2);
-  border-radius:5px;
+.step-num{
+  width:28px;height:28px;
+  border-radius:8px;
+  background:var(--accent-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  color:var(--accent);
   flex-shrink:0;
-  position:relative;
-  transition:all 0.2s;
 }
 
-.check-item.checked .check-box{
-  background:var(--accent);
-  border-color:var(--accent);
+.step-title{
+  font-size:13.5px;
+  font-weight:500;
+  color:var(--text);
+  line-height:1.4;
 }
 
-.check-item.checked .check-box::after{
-  content:'';
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-68%) rotate(-45deg);
-  width:10px;height:6px;
-  border:2px solid #000;
-  border-top:0;border-right:0;
-}
-
-.check-label{
-  font-size:14px;
-  color:var(--text2);
-  transition:color 0.15s;
-}
-
-.check-item.checked .check-label{
+.step-desc{
+  font-size:12px;
   color:var(--text3);
-  text-decoration:line-through;
+  line-height:1.5;
 }
 
 /* ── SECTION ── */
@@ -868,28 +865,33 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
   </a>
   <a class="nav-item" data-section="s3" onclick="scrollTo('s3');return false;" href="#">
     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-    Comercial
+    Perfil do público
     <span class="nav-check" id="nc3"></span>
   </a>
   <a class="nav-item" data-section="s4" onclick="scrollTo('s4');return false;" href="#">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-    Produtos e oferta
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    Comercial
     <span class="nav-check" id="nc4"></span>
   </a>
   <a class="nav-item" data-section="s5" onclick="scrollTo('s5');return false;" href="#">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-    Público e mercado
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+    Produtos e oferta
     <span class="nav-check" id="nc5"></span>
   </a>
   <a class="nav-item" data-section="s6" onclick="scrollTo('s6');return false;" href="#">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-    Meta e investimento
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Público e mercado
     <span class="nav-check" id="nc6"></span>
   </a>
   <a class="nav-item" data-section="s7" onclick="scrollTo('s7');return false;" href="#">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    Meta e investimento
+    <span class="nav-check" id="nc7"></span>
+  </a>
+  <a class="nav-item" data-section="s8" onclick="scrollTo('s8');return false;" href="#">
     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
     Extras
-    <span class="nav-check" id="nc7"></span>
+    <span class="nav-check" id="nc8"></span>
   </a>
 
   <div class="sidebar-progress">
@@ -931,42 +933,33 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       <p>Esse formulário é a base do trabalho que vamos construir juntos. Quanto mais real e detalhada for sua resposta, mais precisa e estratégica será a entrega — sem achismo, sem promessa vaga.</p>
       <div class="welcome-meta">
         <div class="meta-item"><div class="meta-dot"></div>Salvo automaticamente</div>
-        <div class="meta-item"><div class="meta-dot"></div>7 seções</div>
+        <div class="meta-item"><div class="meta-dot"></div>8 seções</div>
         <div class="meta-item"><div class="meta-dot"></div>Gera resumo final</div>
         <div class="meta-item"><div class="meta-dot"></div>Envio seguro por e-mail</div>
       </div>
     </div>
 
-    <!-- Checklist -->
+    <!-- Steps -->
     <div class="checklist-card">
       <div class="card-header">
-        <div class="card-title">Checklist de onboarding</div>
-        <div class="card-badge" id="cl-count">0 de 6 concluídos</div>
+        <div class="card-title">Seu processo de onboarding</div>
+        <div class="card-badge">3 etapas</div>
       </div>
-      <div class="checklist">
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <span class="check-label">Formulário preenchido e enviado</span>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-title">Preencha este formulário</div>
+          <div class="step-desc">Suas respostas são a base da estratégia. Quanto mais detalhado, melhor o resultado.</div>
         </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <span class="check-label">Acesso ao gerenciador de anúncios concedido</span>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-title">Reunião de alinhamento</div>
+          <div class="step-desc">Vamos apresentar a estratégia, a planilha de acompanhamento e alinhar tudo antes de publicar.</div>
         </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <span class="check-label">Pixel instalado no site / landing page</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <span class="check-label">Criativos iniciais disponibilizados (fotos e vídeos)</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <span class="check-label">Reunião de alinhamento estratégico realizada</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <span class="check-label">Campanha configurada e aprovada para publicação</span>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-title">Campanha no ar</div>
+          <div class="step-desc">Com tudo aprovado, as campanhas sobem e o acompanhamento começa.</div>
         </div>
       </div>
     </div>
@@ -1095,18 +1088,76 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <!-- ── SEÇÃO 3: COMERCIAL ── -->
+    <!-- ── SEÇÃO 3: PERFIL DO PÚBLICO ── -->
     <div class="form-section" id="s3">
       <div class="section-header" onclick="toggleSection('b3')">
         <div class="section-number">03</div>
         <div class="section-info">
-          <div class="section-title">Comercial e atendimento</div>
-          <div class="section-desc">Como o lead vira cliente quando chega</div>
+          <div class="section-title">Perfil do público</div>
+          <div class="section-desc">Quem é o cliente que você quer atrair</div>
         </div>
         <span class="section-status" id="st3">Não iniciado</span>
         <svg class="section-chevron" id="ch3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="section-body" id="b3">
+        <div class="question">
+          <div class="q-label">Faixa etária predominante dos seus clientes <span class="q-required">*</span></div>
+          <div class="q-hint">Pode marcar mais de uma</div>
+          <div class="options-grid cols2">
+            <label class="option-card checkbox-opt"><input type="checkbox" name="faixa_etaria" value="18 a 24 anos" onchange="autoSave()"><span class="indicator"></span><span class="option-label">18 a 24 anos</span></label>
+            <label class="option-card checkbox-opt"><input type="checkbox" name="faixa_etaria" value="25 a 34 anos" onchange="autoSave()"><span class="indicator"></span><span class="option-label">25 a 34 anos</span></label>
+            <label class="option-card checkbox-opt"><input type="checkbox" name="faixa_etaria" value="35 a 44 anos" onchange="autoSave()"><span class="indicator"></span><span class="option-label">35 a 44 anos</span></label>
+            <label class="option-card checkbox-opt"><input type="checkbox" name="faixa_etaria" value="45 a 54 anos" onchange="autoSave()"><span class="indicator"></span><span class="option-label">45 a 54 anos</span></label>
+            <label class="option-card checkbox-opt"><input type="checkbox" name="faixa_etaria" value="55 a 64 anos" onchange="autoSave()"><span class="indicator"></span><span class="option-label">55 a 64 anos</span></label>
+            <label class="option-card checkbox-opt"><input type="checkbox" name="faixa_etaria" value="65 anos ou mais" onchange="autoSave()"><span class="indicator"></span><span class="option-label">65 anos ou mais</span></label>
+          </div>
+        </div>
+        <div class="question">
+          <div class="q-label">Gênero predominante <span class="q-required">*</span></div>
+          <div class="options-grid">
+            <label class="option-card"><input type="radio" name="genero" value="Predominantemente masculino"><span class="indicator"></span><span class="option-label">Predominantemente masculino</span></label>
+            <label class="option-card"><input type="radio" name="genero" value="Predominantemente feminino"><span class="indicator"></span><span class="option-label">Predominantemente feminino</span></label>
+            <label class="option-card"><input type="radio" name="genero" value="Equilibrado entre os dois"><span class="indicator"></span><span class="option-label">Equilibrado entre os dois</span></label>
+          </div>
+        </div>
+        <div class="question">
+          <div class="q-label">Renda mensal estimada do cliente ideal <span class="q-required">*</span></div>
+          <div class="options-grid cols2">
+            <label class="option-card"><input type="radio" name="renda" value="Até R$3.000"><span class="indicator"></span><span class="option-label">Até R$3.000</span></label>
+            <label class="option-card"><input type="radio" name="renda" value="R$3.000 a R$6.000"><span class="indicator"></span><span class="option-label">R$3.000 a R$6.000</span></label>
+            <label class="option-card"><input type="radio" name="renda" value="R$6.000 a R$12.000"><span class="indicator"></span><span class="option-label">R$6.000 a R$12.000</span></label>
+            <label class="option-card"><input type="radio" name="renda" value="R$12.000 a R$25.000"><span class="indicator"></span><span class="option-label">R$12.000 a R$25.000</span></label>
+            <label class="option-card"><input type="radio" name="renda" value="Acima de R$25.000"><span class="indicator"></span><span class="option-label">Acima de R$25.000</span></label>
+          </div>
+        </div>
+        <div class="question">
+          <div class="q-label">Profissão mais comum entre seus clientes</div>
+          <div class="q-hint">Ex: servidores públicos, empresários, professores, profissionais de saúde</div>
+          <input type="text" id="profissao_cliente" placeholder="Descreva as profissões mais frequentes" oninput="autoSave()">
+        </div>
+        <div class="question">
+          <div class="q-label">Instagram da empresa <span class="q-required">*</span></div>
+          <input type="text" id="instagram_empresa" placeholder="@suaempresa" oninput="autoSave()">
+        </div>
+        <div class="question">
+          <div class="q-label">Site da empresa</div>
+          <input type="url" id="site_empresa" placeholder="https://suaempresa.com.br" oninput="autoSave()">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SEÇÃO4: COMERCIAL ── -->
+    <div class="form-section" id="s4">
+      <div class="section-header" onclick="toggleSection('b4')">
+        <div class="section-number">04</div>
+        <div class="section-info">
+          <div class="section-title">Comercial e atendimento</div>
+          <div class="section-desc">Como o lead vira cliente quando chega</div>
+        </div>
+        <span class="section-status" id="st4">Não iniciado</span>
+        <svg class="section-chevron" id="ch4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="section-body" id="b4">
         <div class="question">
           <div class="q-label">Quem atende o lead? <span class="q-required">*</span></div>
           <textarea id="quem_atende" placeholder="Ex: Recepcionista pelo WhatsApp / time comercial / eu mesmo" oninput="autoSave()"></textarea>
@@ -1153,18 +1204,18 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <!-- ── SEÇÃO 4: PRODUTOS ── -->
-    <div class="form-section" id="s4">
-      <div class="section-header" onclick="toggleSection('b4')">
-        <div class="section-number">04</div>
+    <!-- ── SEÇÃO5: PRODUTOS ── -->
+    <div class="form-section" id="s5">
+      <div class="section-header" onclick="toggleSection('b5')">
+        <div class="section-number">05</div>
         <div class="section-info">
           <div class="section-title">Produtos e oferta</div>
           <div class="section-desc">O que vamos vender e como</div>
         </div>
-        <span class="section-status" id="st4">Não iniciado</span>
-        <svg class="section-chevron" id="ch4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="section-status" id="st5">Não iniciado</span>
+        <svg class="section-chevron" id="ch5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="section-body" id="b4">
+      <div class="section-body" id="b5">
         <div class="question">
           <div class="q-label">Quais serviços/produtos quer anunciar? <span class="q-required">*</span></div>
           <div class="q-hint">Liste os principais com ticket médio de cada um</div>
@@ -1211,18 +1262,18 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <!-- ── SEÇÃO 5: PÚBLICO ── -->
-    <div class="form-section" id="s5">
-      <div class="section-header" onclick="toggleSection('b5')">
-        <div class="section-number">05</div>
+    <!-- ── SEÇÃO6: PÚBLICO ── -->
+    <div class="form-section" id="s6">
+      <div class="section-header" onclick="toggleSection('b6')">
+        <div class="section-number">06</div>
         <div class="section-info">
           <div class="section-title">Público e mercado</div>
           <div class="section-desc">Para quem vamos falar e contra quem competimos</div>
         </div>
-        <span class="section-status" id="st5">Não iniciado</span>
-        <svg class="section-chevron" id="ch5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="section-status" id="st6">Não iniciado</span>
+        <svg class="section-chevron" id="ch6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="section-body" id="b5">
+      <div class="section-body" id="b6">
         <div class="question">
           <div class="q-label">Pense no seu melhor cliente dos últimos 6 meses. Descreva essa pessoa. <span class="q-required">*</span></div>
           <div class="q-hint">Idade, profissão, como chegou até você, por que fechou, quanto gastou</div>
@@ -1250,18 +1301,18 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <!-- ── SEÇÃO 6: META E INVESTIMENTO ── -->
-    <div class="form-section" id="s6">
-      <div class="section-header" onclick="toggleSection('b6')">
-        <div class="section-number">06</div>
+    <!-- ── SEÇÃO7: META E INVESTIMENTO ── -->
+    <div class="form-section" id="s7">
+      <div class="section-header" onclick="toggleSection('b7')">
+        <div class="section-number">07</div>
         <div class="section-info">
           <div class="section-title">Meta e investimento</div>
           <div class="section-desc">Onde queremos chegar e com quanto trabalhamos</div>
         </div>
-        <span class="section-status" id="st6">Não iniciado</span>
-        <svg class="section-chevron" id="ch6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="section-status" id="st7">Não iniciado</span>
+        <svg class="section-chevron" id="ch7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="section-body" id="b6">
+      <div class="section-body" id="b7">
         <div class="question">
           <div class="q-label">Investimento mensal em anúncios <span class="q-required">*</span></div>
           <div class="q-hint">Verba para Meta/Google — não inclui o valor da gestão</div>
@@ -1294,18 +1345,18 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <!-- ── SEÇÃO 7: EXTRAS ── -->
-    <div class="form-section" id="s7">
-      <div class="section-header" onclick="toggleSection('b7')">
-        <div class="section-number">07</div>
+    <!-- ── SEÇÃO8: EXTRAS ── -->
+    <div class="form-section" id="s8">
+      <div class="section-header" onclick="toggleSection('b8')">
+        <div class="section-number">08</div>
         <div class="section-info">
           <div class="section-title">Extras</div>
           <div class="section-desc">Informações adicionais e referências</div>
         </div>
-        <span class="section-status" id="st7">Opcional</span>
-        <svg class="section-chevron" id="ch7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="section-status" id="st8">Opcional</span>
+        <svg class="section-chevron" id="ch8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="section-body" id="b7">
+      <div class="section-body" id="b8">
         <div class="question">
           <div class="q-label">Observações livres</div>
           <div class="q-hint">Qualquer coisa que você ache relevante e que não cabia nas perguntas anteriores</div>
@@ -1453,11 +1504,12 @@ function updateProgress(){
   const sections=[
     {id:'b1',fields:['empresa','nicho','horarios','email_cliente','endereco'],radios:['tempo_op'],idx:1},
     {id:'b2',fields:['clientes_mes','origem','desafios','sazonalidade'],radios:['faturamento','ticket'],idx:2},
-    {id:'b3',fields:['quem_atende','conversao','crm','capacidade'],radios:['resp_time'],idx:3},
-    {id:'b4',fields:['produtos','maior_margem','aumentar_vol'],radios:['prod_material'],idx:4},
-    {id:'b5',fields:['cliente_ideal','busca_google','diferencial','concorrentes'],radios:[],idx:5},
-    {id:'b6',fields:['meta_fat','expectativa'],radios:['verba','pagamento'],idx:6},
-    {id:'b7',fields:[],radios:[],idx:7},
+    {id:'b3',fields:['instagram_empresa'],radios:['genero','renda'],idx:3},
+    {id:'b4',fields:['quem_atende','conversao','crm','capacidade'],radios:['resp_time'],idx:4},
+    {id:'b5',fields:['produtos','maior_margem','aumentar_vol'],radios:['prod_material'],idx:5},
+    {id:'b6',fields:['cliente_ideal','busca_google','diferencial','concorrentes'],radios:[],idx:6},
+    {id:'b7',fields:['meta_fat','expectativa'],radios:['verba','pagamento'],idx:7},
+    {id:'b8',fields:[],radios:[],idx:8},
   ];
 
   let totalFilled=0,total=0;
@@ -1477,7 +1529,7 @@ function updateProgress(){
 
     const st=document.getElementById('st'+s.idx);
     const nc=document.getElementById('nc'+s.idx);
-    if(st&&s.idx<=6){
+    if(st&&s.idx<=7){
       if(sFilled===0){st.textContent='Não iniciado';st.className='section-status';}
       else if(sFilled<sTotal){st.textContent=`${sFilled}/${sTotal} preenchidos`;st.className='section-status';}
       else{st.textContent='Completo';st.className='section-status filled';}
@@ -1493,13 +1545,7 @@ function updateProgress(){
   document.getElementById('spfill').style.width=pct+'%';
 }
 
-// ── CHECKLIST ───────────────────────────────────────────────────────────────
-function toggleCheck(item){
-  item.classList.toggle('checked');
-  const done=document.querySelectorAll('.check-item.checked').length;
-  const total=document.querySelectorAll('.check-item').length;
-  document.getElementById('cl-count').textContent=`${done} de ${total} concluídos`;
-}
+// ── STEPS (static, no interaction needed) ──────────────────────────────────
 
 // ── AUDIO RECORDER ──────────────────────────────────────────────────────────
 const recorders={};
@@ -1609,7 +1655,7 @@ function collectData(){
   const g=(id)=>{const el=document.getElementById(id);return el?el.value.trim():'';};
   const r=(name)=>{const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:'—';};
   return {
-    empresa:g('empresa'),nicho:g('nicho'),tempo_op:r('tempo_op'),horarios:g('horarios'),email_cliente:g('email_cliente'),endereco:g('endereco'),
+    empresa:g('empresa'),nicho:g('nicho'),tempo_op:r('tempo_op'),horarios:g('horarios'),email_cliente:g('email_cliente'),endereco:g('endereco'),faixa_etaria:Array.from(document.querySelectorAll('input[name="faixa_etaria"]:checked')).map(e=>e.value).join(', ')||'—',genero:r('genero'),renda:r('renda'),profissao_cliente:g('profissao_cliente'),instagram_empresa:g('instagram_empresa'),site_empresa:g('site_empresa'),
     faturamento:r('faturamento'),ticket:r('ticket'),clientes_mes:g('clientes_mes'),origem:g('origem'),desafios:g('desafios'),sazonalidade:g('sazonalidade'),
     quem_atende:g('quem_atende'),resp_time:r('resp_time'),conversao:g('conversao'),crm:g('crm'),capacidade:g('capacidade'),exp_anterior:g('exp_anterior'),
     produtos:g('produtos'),maior_margem:g('maior_margem'),aumentar_vol:g('aumentar_vol'),nao_focar:g('nao_focar'),lp:g('lp'),prod_material:r('prod_material'),
@@ -1631,6 +1677,11 @@ function generateSummary(){
       ['Faturamento atual',d.faturamento],['Ticket médio',d.ticket],
       ['Clientes novos/mês',d.clientes_mes],['Origem dos clientes',d.origem],
       ['Sazonalidade',d.sazonalidade],['Desafios',d.desafios],
+    ]},
+    {title:'PERFIL DO PÚBLICO',rows:[
+      ['Faixa etária',d.faixa_etaria],['Gênero predominante',d.genero],['Renda estimada',d.renda],
+      ['Profissão dos clientes',d.profissao_cliente||'—'],['Instagram',d.instagram_empresa],
+      ['Site',d.site_empresa||'—'],
     ]},
     {title:'COMERCIAL',rows:[
       ['Quem atende',d.quem_atende],['Tempo de resposta',d.resp_time],
@@ -1684,7 +1735,6 @@ Nicho: ${d.nicho}
 Tempo de operação: ${d.tempo_op}
 Horários: ${d.horarios}
 E-mail: ${d.email_cliente}
-E-mail: ${d.email_cliente}
 Localização/campanhas: ${d.endereco}
 
 ═══ DIAGNÓSTICO FINANCEIRO ═══
@@ -1694,6 +1744,14 @@ Clientes novos/mês: ${d.clientes_mes}
 Origem dos clientes: ${d.origem}
 Sazonalidade: ${d.sazonalidade}
 Desafios: ${d.desafios}
+
+═══ PERFIL DO PÚBLICO ═══
+Faixa etária: ${d.faixa_etaria}
+Gênero: ${d.genero}
+Renda estimada: ${d.renda}
+Profissão dos clientes: ${d.profissao_cliente||'—'}
+Instagram: ${d.instagram_empresa}
+Site: ${d.site_empresa||'—'}
 
 ═══ COMERCIAL ═══
 Quem atende: ${d.quem_atende}
@@ -1747,6 +1805,9 @@ async function submitToFormspree(){
   if(!d.clientes_mes)missing.push('Clientes novos/mês');
   if(!d.origem)missing.push('Origem dos clientes');
   if(!d.desafios)missing.push('Principal desafio');
+  if(d.genero==='—')missing.push('Gênero do público');
+  if(d.renda==='—')missing.push('Renda estimada do público');
+  if(!d.instagram_empresa)missing.push('Instagram da empresa');
   if(!d.quem_atende)missing.push('Quem atende o lead');
   if(d.resp_time==='—')missing.push('Tempo de resposta');
   if(!d.conversao)missing.push('Taxa de conversão');
@@ -1784,6 +1845,14 @@ Clientes novos/mês: ${d.clientes_mes}
 Origem dos clientes: ${d.origem}
 Sazonalidade: ${d.sazonalidade}
 Desafios: ${d.desafios}
+
+═══ PERFIL DO PÚBLICO ═══
+Faixa etária: ${d.faixa_etaria}
+Gênero: ${d.genero}
+Renda estimada: ${d.renda}
+Profissão dos clientes: ${d.profissao_cliente||'—'}
+Instagram: ${d.instagram_empresa}
+Site: ${d.site_empresa||'—'}
 
 ═══ COMERCIAL ═══
 Quem atende: ${d.quem_atende}
@@ -1835,6 +1904,12 @@ ${d.obs?'═══ OBSERVAÇÕES ═══\n'+d.obs:''}`;
       '10_origem_clientes':d.origem,
       '11_desafio_principal':d.desafios,
       '12_sazonalidade':d.sazonalidade,
+      '10b_faixa_etaria':d.faixa_etaria,
+      '11_genero':d.genero,
+      '12_renda':d.renda,
+      '12b_profissao_cliente':d.profissao_cliente||'—',
+      '12c_instagram':d.instagram_empresa,
+      '12d_site':d.site_empresa||'—',
       '13_quem_atende':d.quem_atende,
       '14_tempo_resposta':d.resp_time,
       '15_conversao':d.conversao,
